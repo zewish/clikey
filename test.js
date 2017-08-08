@@ -21,7 +21,7 @@ describe('stdin, stdout', () => {
     const msg = 'some msg';
     const data = 'wow data!';
 
-    beforeEach(() => {
+    beforeEach(async () => {
         stdout = {
             write: spy(() => {
                 console.log();
@@ -48,49 +48,51 @@ describe('stdin, stdout', () => {
 
         res = clikey(msg, optsMock);
         stdin.__event_data(data);
+
+        await res;
     });
 
     it('resolves with data entered', () => {
         return res.should.be.eventually.equal(data);
     });
 
-    it('calls stdout.write()', () => res.then(() => {
+    it('calls stdout.write()', () => {
         stdout.write
         .should.have.callCount(2);
-    }));
+    });
 
-    it('calls stdout.write(msg)', () => res.then(() => {
+    it('calls stdout.write(msg)', () => {
         stdout.write.firstCall.calledWith(msg)
         .should.be.true;
-    }));
+    });
 
-    it('calls stdout.write("\\n")', () => res.then(() => {
+    it('calls stdout.write("\\n")', () => {
         stdout.write.secondCall.calledWith('\n')
         .should.be.true;
-    }));
+    });
 
-    it('calls stdin.setRawMode()', () => res.then(() => {
+    it('calls stdin.setRawMode()', () => {
         stdin.setRawMode
         .should.be.calledWith(true);
-    }));
+    });
 
-    it('calls stdin.setEncoding()', () => res.then(() => {
+    it('calls stdin.setEncoding()', () => {
         stdin.setEncoding
         .should.be.calledWith(optsMock.encoding);
-    }));
+    });
 
-    it('calls stdin.once()', () => res.then(() => {
+    it('calls stdin.once()', () => {
         stdin.once
         .should.be.calledWith('data', stdin.__event_data);
-    }));
+    });
 
-    it('calls stdin.pause()', () => res.then(() => {
+    it('calls stdin.pause()', () => {
         stdin.pause
         .should.have.callCount(1);
-    }));
+    });
 
-    it('calls stdin.resume()', () => res.then(() => {
+    it('calls stdin.resume()', () => {
         stdin.resume
         .should.have.callCount(1);
-    }));
+    });
 });
