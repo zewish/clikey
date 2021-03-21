@@ -1,14 +1,12 @@
 #!/usr/bin/env node
-'use strict';
-
 const clikey = require('./index');
 
 (async () => {
-    const answer = await clikey('Are you sure? [y/N]');
+  const answer = await clikey('Are you sure? [y/N]');
 
-    if (answer.toLowerCase() === 'y') {
-        return console.log('You said YES!!!');
-    }
+  if (answer.toLowerCase() === 'y') {
+    return console.log('You said YES!!!');
+  }
 
-    console.log('You said NO');
+  console.log('You said NO');
 })();

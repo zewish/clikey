@@ -1,6 +1,6 @@
 import { ReadStream, WriteStream } from 'fs';
 
-const clikey: (
+declare const clikey: (
   msg: string,
   options?: {
     stdout?: ReadStream,
