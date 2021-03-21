@@ -5,19 +5,17 @@ Prompts for a single keypress in a node.js CLI app
 #### Usage
 ```javascript
 #!/usr/bin/env node
-'use strict';
-
 const clikey = require('clikey');
 
 (async () => {
-    const answer = await clikey('Are you sure? [y/N]');
-    // answer received when a single key is pressed
+  const answer = await clikey('Are you sure? [y/N]');
+  // answer received when a single key is pressed
 
-    if (answer.toLowerCase() === 'y') {
-        return console.log('You said YES!!!');
-    }
+  if (answer.toLowerCase() === 'y') {
+    return console.log('You said YES!!!');
+  }
 
-    console.log('You said NO');
+  console.log('You said NO');
 })();
 ```
 

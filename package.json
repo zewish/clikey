@@ -1,6 +1,6 @@
 {
   "name": "clikey",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Prompts for a single keypress in a node.js CLI app",
   "main": "index.js",
   "typings": "index.d.ts",
