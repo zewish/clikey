@@ -1,7 +1,8 @@
 module.exports = (msg, {
   stdout = process.stdout,
   stdin = process.stdin,
-  encoding = 'utf8'
+  encoding = 'utf8',
+  lineBreak = true,
 } = {}) => new Promise((resolve) => {
   stdout.write(msg);
 
@@ -11,7 +12,9 @@ module.exports = (msg, {
   stdin
     .once('data', data => {
       stdin.pause();
-      stdout.write('\n');
+      if (lineBreak) {
+        stdout.write('\n');
+      }
 
       resolve(`${data || ''}`);
     })
